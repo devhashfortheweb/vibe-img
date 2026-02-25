@@ -20,7 +20,7 @@ It will include the library:
 
 And generate images with a single tag:
 
-```
+```html
 <vibe-img 
   model="recraft" 
   prompt="Miami Beach at sunset">
