@@ -1,0 +1,55 @@
+{
+  "name": "vibe-img",
+  "version": "1.0.0",
+  "description": "AI image generation via a single HTML tag. Drop in a script, use <vibe-img>.",
+  "type": "module",
+  "keywords": [
+    "ai",
+    "image-generation",
+    "web-component",
+    "custom-element",
+    "openai",
+    "recraft",
+    "vibe-img"
+  ],
+  "author": "",
+  "license": "FSL-1.1-MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/devhashfortheweb/vibe-img.git"
+  },
+  "homepage": "https://www.vibe-img.com",
+  "bugs": {
+    "url": "https://github.com/devhashfortheweb/vibe-img/issues"
+  },
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ],
+  "main": "dist/vibeimg.js",
+  "module": "dist/vibeimg.esm.js",
+  "exports": {
+    ".": {
+      "import": "./dist/vibeimg.esm.js",
+      "browser": "./dist/vibeimg.js"
+    }
+  },
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite",
+    "test": "vitest run",
+    "test:watch": "vitest --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@preact/preset-vite": "^2.10.3",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5",
+    "vitest": "^4.0.18"
+  },
+  "dependencies": {
+    "preact": "^10.27.2",
+    "preact-custom-element": "^4.5.1"
+  }
+}
