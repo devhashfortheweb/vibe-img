@@ -16,13 +16,14 @@ import { Logger } from './utils/errorHandler';
 
 // ─── Register web component ────────────────────────────────────────────────
 
-const OBSERVED = [
+const OBSERVED_ATTRS = [
   'model', 'op', 'prompt', 'img-ref', 'aspect', 'img-style',
   'quality', 'params', 'seed', 'alt',
-];
+] as const;
 
-register(VibeImgElement, 'vibe-img', OBSERVED);
-registerVibeTheme();
+type VibeImgAttribute = (typeof OBSERVED_ATTRS)[number];
+
+register(VibeImgElement, 'vibe-img', [...OBSERVED_ATTRS] as VibeImgAttribute[]);
 
 // ─── Global API ────────────────────────────────────────────────────────────
 
