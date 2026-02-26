@@ -61,7 +61,7 @@ export function VibeImgElement(props: VibeImgProps) {
       {/* Expiry badge */}
       {status === 'done' && revealed && showExpiry && (
         <div class="vibeimg-expiry vibeimg-expiry-visible"
-             onClick={() => window.open('https://www.vibe-img.com/feedback?isExpiring=true', '_blank')}>
+             onClick={() => window.open('https://www.vibe-img.com/redirect?isExpiring=true', '_blank')}>
           Expires soon
         </div>
       )}

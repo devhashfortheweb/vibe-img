@@ -37,6 +37,15 @@ Once the page loads, click the ⋯ button on any image to enter your API key.
 
 That's it — images generate automatically and you're ready to ship.
 
+### 3. Using with AI coding agents
+
+If you use Claude Code, Cursor, Codex, or other AI coding agents, install the vibe-img skill:
+```
+npx skills add devhashfortheweb/vibe-img
+```
+
+Your agent will automatically know how to generate correct `<vibe-img>` tags.
+
 ## Why?
 
 Some vibe builders suck at image generation and give you zero control. Others don't even let you try. vibe-img tries to fix that.
@@ -240,27 +249,59 @@ Logs every step — cache lookups, key resolution, HTTP requests, polling. Enabl
 
 ## Security
 
-### API key storage
+### Two phases, two threat models
 
-API keys are encrypted with AES-GCM and stored in your browser's IndexedDB — they never leave your device. They're passed directly to the provider on each request. **The only exception is when a CORS proxy is required** (see below), in which case the key passes through the proxy in memory for the duration of the request, then it's gone.
+vibe-img operates in two distinct phases, each with a different security profile:
 
-### CORS proxy
+**Generation (prototyping).** In this phase, you use an API key in your browser. You are typically on `localhost` or within your private dev environment. Images are generated and then cached on the CDN.
 
-Some providers (e.g. OpenAI) don't allow direct browser requests. By default, vibe-img routes those through `api.vibe-img.com/proxy`.
+**Sharing (viewing).** Once you share the URL or deploy the page, visitors see cached images served directly from the CDN. No API key is present, required, or even requested during this phase. There is simply nothing to steal.
 
-**Your API token passes through this proxy, but is never stored — it exists only in memory for the duration of the request.** The proxy's only job is forwarding. Providers that support CORS (Recraft does) bypass the proxy entirely and call the API directly from the browser.
+This separation is intentional. The API key only exists while you are prototyping on your own machine. Once the images are cached, the key's job is done.
 
-If you'd rather not trust the default proxy, point vibe-img at your own:
+### How keys are stored
+
+vibe-img follows the BYOK (Bring Your Own Key) model. Your key never leaves your device except to make a direct request to the AI provider. There is no central server storing user keys, which eliminates "honeypots" or any single point of compromise.
+
+Keys are encrypted with **AES-GCM 256-bit** via the Web Crypto API and stored in IndexedDB. The encryption key is set to **non-extractable**. This means even with direct access to IndexedDB, an attacker would only find ciphertext.
+
+**Transparency note:** AES-GCM requires `crypto.subtle`, which is only available in secure contexts like HTTPS or `localhost`. If you run vibe-img over plain HTTP (for example, behind a dev proxy or Burp Suite), keys are stored **unencrypted** in IndexedDB. This is an intentional fallback for development tools.
+
+### What about XSS?
+
+In a real-world scenario, XSS is not a viable threat to your API key given how vibe-img is used. While you are prototyping (and the key exists), you are on `localhost` or a controlled environment where there is no attack surface for third-party scripts. By the time you share the project and an attack surface exists, the key is no longer there.
+
+### Cached images are public but unguessable
+
+Generated images are stored on a public CDN so anyone can view shared projects without needing an API key. Image URLs are derived from a **SHA-256 hash** of every generation parameter:
+
+cdn.vibe-img.com/vibeimg-4479b58ffa14e53da9ec06e3feedcdb802dbca14b5c4a42fba6c093ba31ef5bc.webp
+
+
+There is no directory listing, no sequential IDs, and no way to enumerate endpoints. Finding a specific image would require knowing the exact combination of prompt, style, model, and every other attribute used to create it.
+
+### The CORS proxy
+
+Some providers, such as OpenAI, do not allow direct requests from a browser. To handle this, vibe-img routes requests through a CORS proxy (`api.vibe-img.com/proxy` by default). Your API key passes through this proxy **in memory only for the duration of the request**. It is never written to disk, logged, or stored.
+
+Providers that support browser CORS, like Recraft, bypass this proxy entirely. In those cases, requests go straight from your browser to the provider.
+
+If you prefer not to use the default proxy, you can set up your own or disable it entirely (though this only works with CORS-enabled providers):
 
 ```js
-VibeImg.setup({ corsProxyUrl: 'https://your-proxy.com/proxy?url=' });
-```
+// Use your own proxy
+VibeImg.setup({ corsProxyUrl: '[https://your-proxy.com/proxy?url=](https://your-proxy.com/proxy?url=)' });
 
-Or disable it entirely:
-
-```js
+// Or disable it 
 VibeImg.setup({ corsProxyUrl: null });
 ```
+
+### What vibe-img does NOT do
+
+- Store keys on any server
+- Send keys to any endpoint other than the AI provider (or the CORS proxy when required)
+- Log, track, or transmit key material
+- Hardcode keys in generated HTML — keys are entered at runtime via the built-in modal
 
 ---
 

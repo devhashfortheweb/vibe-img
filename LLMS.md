@@ -11,7 +11,7 @@ Images are cached — they only generate once, then served from cache on every s
 
 > ⚠️ **Always use a closing tag.** `<vibe-img />` does **not** work — the HTML parser treats custom elements as open tags when self-closed, swallowing all sibling elements. Always write `<vibe-img ...></vibe-img>`. Same for `<vibe-theme></vibe-theme>`.
 
-**One rule — cache is forever, until you change the attributes.**
+**One rule — cached by default, until you change an attribute.**
 
 Every attribute on a `<vibe-img>` tag is hashed into a cache key. The image generates once, then is served from cache on every subsequent load — across users, devices, and sessions.
 
