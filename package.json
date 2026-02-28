@@ -1,7 +1,7 @@
 {
   "name": "vibe-img",
   "version": "1.0.1",
-  "description": "AI image generation via a single HTML tag. Drop in a script, use <vibe-img>.",
+  "description": "AI image generation via a single HTML tag.  Drop in a script, use <vibe-img>.",
   "type": "module",
   "keywords": [
     "ai",
