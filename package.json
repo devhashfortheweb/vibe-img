@@ -1,6 +1,6 @@
 {
   "name": "vibe-img",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "AI image generation via a single HTML tag. Drop in a script, use <vibe-img>.",
   "type": "module",
   "keywords": [
@@ -12,7 +12,7 @@
     "recraft",
     "vibe-img"
   ],
-  "author": "",
+  "author": "devhashfortheweb",
   "license": "BUSL-1.1",
   "repository": {
     "type": "git",
@@ -25,10 +25,11 @@
   "files": [
     "dist/",
     "README.md",
-    "LICENSE"
+    "LICENSE.md"
   ],
   "main": "dist/vibeimg.js",
   "module": "dist/vibeimg.esm.js",
+  "sideEffects": true,
   "exports": {
     ".": {
       "import": "./dist/vibeimg.esm.js",
@@ -37,6 +38,7 @@
   },
   "scripts": {
     "build": "vite build",
+    "prepublishOnly": "npm run build",
     "dev": "vite",
     "test": "vitest run",
     "test:watch": "vitest --watch",

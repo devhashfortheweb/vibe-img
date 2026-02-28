@@ -53,7 +53,7 @@ await VibeImg.configure({
 ## Script tag
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/vibe-img@1.0.0/dist/vibeimg.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vibe-img@1/dist/vibeimg.js"></script>
 ```
 
 ---
@@ -266,7 +266,7 @@ Use `<vibe-theme>` whenever 2+ images on the page should share a visual style â€
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script src="https://cdn.jsdelivr.net/npm/vibe-img@1.0.0/dist/vibeimg.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vibe-img@1/dist/vibeimg.js"></script>
   <style>
     body { background: #FFD700; margin: 0; font-family: system-ui, sans-serif; }
     .features-row { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; }

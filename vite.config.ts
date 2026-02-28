@@ -3,7 +3,7 @@ import preact from '@preact/preset-vite';
 
 export default defineConfig({
   plugins: [preact()],
-
+  publicDir: false,
   server: {
     host: true,
     allowedHosts: ['vibeimg.local'],

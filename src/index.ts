@@ -18,12 +18,13 @@ import { Logger } from './utils/errorHandler';
 
 const OBSERVED_ATTRS = [
   'model', 'op', 'prompt', 'img-ref', 'aspect', 'img-style',
-  'quality', 'params', 'seed', 'alt',
-] as const;
+  'quality', 'params', 'seed', 'alt', 'format', 'negative-prompt'
+];
 
 type VibeImgAttribute = (typeof OBSERVED_ATTRS)[number];
 
 register(VibeImgElement, 'vibe-img', [...OBSERVED_ATTRS] as VibeImgAttribute[]);
+registerVibeTheme();
 
 // ─── Global API ────────────────────────────────────────────────────────────
 

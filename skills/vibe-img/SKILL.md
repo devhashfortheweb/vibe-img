@@ -20,7 +20,7 @@ The goal is to speed up the prototyping phase with custom-tailored, non-stock as
 Add the script tag in `<head>`:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/vibe-img@1.0.0/dist/vibeimg.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vibe-img@1/dist/vibeimg.js"></script>
 ```
 
 No build step. No npm install. Works in any HTML page.

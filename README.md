@@ -5,7 +5,7 @@
 Image generation for prototyping, built for lazy LLMs and lazy developers. Choose your favorite model, bring your own API key.
 
 
-![preview](./public/assets/vibe-img-preview.gif)
+![preview](https://www.vibe-img.com/vibe-img-preview.gif)
 
 
 ## Getting Started
@@ -15,7 +15,7 @@ Image generation for prototyping, built for lazy LLMs and lazy developers. Choos
 It will include the library:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/vibe-img@1.0.0/dist/vibeimg.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vibe-img@1/dist/vibeimg.js"></script>
 ```
 
 And generate images with a single tag:
