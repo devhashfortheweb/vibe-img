@@ -8,7 +8,7 @@ Additional Use Grant:
                   You may make production use of the Licensed Work,
                   provided that such use does not modify, replace,
                   or bypass the default storage and proxy endpoints
-                  included in the Licensed Work (api.vibe-img.com).
+                  included in the Licensed Work (*.vibe-img.com and its subdomains).
                   Non-production use is permitted without restriction,
                   including modification of endpoints for development
                   and testing purposes.
