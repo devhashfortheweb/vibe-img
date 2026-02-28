@@ -61,7 +61,7 @@ Your LLM can generate images, maintain visual consistency across a page with `<v
 **Your keys stay yours**. API calls go straight from your browser to the provider — no middleman storing your credentials. See [Security](#security) for details.
 
 
-> ⚠️ Free CDN cache lasts 1 hour — more than enough for a vibe session. Longer retention is coming soon.
+> ⚠️ Free CDN cache lasts 1 hour — perfect for a vibe session. If your project needs permanent hosting or longer retention, let’s [talk about it](https://www.vibe-img.com/feedback). I’m happy to build more if there’s enough interest (and to keep the servers running!).
 
 Are you still reading, human? Just ask your LLM to use this library and let it handle the rest.
 
